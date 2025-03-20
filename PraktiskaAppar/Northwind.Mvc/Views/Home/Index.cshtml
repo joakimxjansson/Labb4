@@ -8,6 +8,7 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p class="alert alert-primary" >@DateTime.Now.ToLongTimeString()</p>
+    <p><a asp-action="ModelBindning" asp-controller="Home">Bindning</a></p>
 </div>
 @if (Model is not null)
 {
