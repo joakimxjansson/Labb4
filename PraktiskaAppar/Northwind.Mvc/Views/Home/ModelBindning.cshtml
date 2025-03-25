@@ -8,36 +8,34 @@
 <div>
     Enter valies for your thing in the following form:
 </div>
-<form method="post" action="/home/modelbindning/2?id=3">
+<form method="POST" action="/home/modelbindning/2?id=3">
     <input name="id" value="1" />
     <input name="color" value="Red" />
     <input name="email" value="test@example.com" />
     <input type="submit" />
 </form>
 
-@if(Model is not null)
+@if (Model is not null)
 {
-    <h2>Submitted thing</h2>
+    <h2>Submitted Thing</h2>
     <hr />
     <div>
         <dl class="dl-horizontal">
-            <dt>Model ID</dt>
-            <dd>@Model.thing.Id</dd>
-
-            <dt>Model Color</dt>
-            <dd>@Model.thing.Color</dd>
-
-            <dt>Model Email</dt>
-            <dd>@Model.thing.Email</dd>
+            <dt>Model.Thing.Id</dt>
+            <dd>@Model.Thing.Id</dd>
+            <dt>Model.Thing.Color</dt>
+            <dd>@Model.Thing.Color</dd>
+            <dt>Model.Thing.Email</dt>
+            <dd>@Model.Thing.Email</dd>
         </dl>
     </div>
     @if (Model.HasErrors)
     {
         <div>
-             @foreach(string errorMessage in Model.ValidationErrors)
-             {
+            @foreach (string errorMessage in Model.ValidationErrors)
+            {
                 <div class="alert alert-danger" role="alert">@errorMessage</div>
-             }
+            }
         </div>
     }
 }

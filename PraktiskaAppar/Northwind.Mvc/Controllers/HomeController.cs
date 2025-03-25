@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization; //för att använda Authorize attributet (filters)
 using Microsoft.AspNetCore.Mvc;
 using Northwind.EntityModels;
 using Northwind.Mvc.Models;
@@ -5,6 +6,7 @@ using System.Diagnostics;
 
 namespace Northwind.Mvc.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -51,19 +53,18 @@ namespace Northwind.Mvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult ModelBindning(Thing thing)
+        public IActionResult ModelBinding(Thing thing)
         {
             HomeModelBindningViewModel model = new(
-                thing,
-                HasErrors: !ModelState.IsValid,
+                Thing: thing, HasErrors: !ModelState.IsValid,
                 ValidationErrors: ModelState.Values
-                    .SelectMany(state => state.Errors)
-                    .Select(error => error.ErrorMessage)
+                .SelectMany(state => state.Errors)
+                .Select(error => error.ErrorMessage)
             );
-
-            return View(thing); //en sida som visar det användaren skickade
+            return View(model); // show the model bound thing
         }
 
+        [Authorize(Roles ="Admin")]
         public IActionResult Privacy()
         {
             return View();
