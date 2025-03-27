@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home Page";
     string currentItem = "";
 }
-<html lang="en" data-bs-theme="dark">
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -79,13 +79,13 @@
                     {
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <a asp-controller="Home" asp-action="ProductDetail" 
-                            asp-route-id="@p.ProductId" class="btn btn-outline-primary">
-                            <div class="ms-2 me-auto">
-                                @p.ProductName
-                            </div>
-                            <span class="badge bg-primary rounded-pill" >
+                               asp-route-id="@p.ProductId" class="btn btn-outline-primary">
+                                <div class="ms-2 me-auto">
+                                    @p.ProductName
+                                </div>
+                                <span class="badge bg-primary rounded-pill" >
                                     @(p.UnitPrice is null ? "zero" : p.UnitPrice.Value.ToString("C"))
-                            </span>
+                                </span>
                             </a>
                         </li>
                     }
