@@ -13,9 +13,9 @@
         <li class="breadcrumb-item active" aria-current="page">Categories</li>
     </ol>
 </nav>
+<hr/>
 
-
-<div class="card" style="width: 18rem;">
+<div class="card mb-3" style="width: 18rem;">
         <img class="card-img-top" src="~/images/category@(Model.CategoryId).jpeg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">@Model.CategoryName</h5>
@@ -29,7 +29,7 @@
    
 
 
-<hr/>
+
 <div class="container-fluid">
     <div class="row">
 @foreach (var product in Model.Products) { 
