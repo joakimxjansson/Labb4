@@ -1,0 +1,45 @@
+@using Northwind.EntityModels
+@model Northwind.EntityModels.Category
+@{
+    ViewData["Title"] = "Category Detail - " + Model.CategoryId;
+}
+<html lang="en">
+<h2>Category details</h2>
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a>
+        <li class="breadcrumb-item active" aria-current="page">Categories</li>
+    </ol>
+</nav>
+
+
+<hr/>
+<div class="container-fluid d-flex justify-content-center ">
+    <div class="d-flex flex-column"><h2>Category name: @Model.CategoryName</h2>
+        <h3> Amount of products in this Category: @Model.Products.Count</h3>
+        <h4>Description: @Model.Description</h4>
+
+</div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+@foreach (var product in Model.Products) { 
+  
+    <div class="card text-center col-md-4  ">
+        <a asp-controller="Home" asp-action="ProductDetail"
+           asp-route-id="@product.ProductId" class="btn btn-outline-primary">
+        <div class="card-body">
+            <h5 class="card-title">@product.ProductName</h5>
+            <p class="card-text">Pris: @product.UnitPrice.Value.ToString("C")</p>
+            <p class="card-text"><small class="text-muted">Företag: @product.Supplier.CompanyName</small></p>
+
+        </div>
+        </a>
+    </div>
+    
+}
+    </div>
+</div>
+

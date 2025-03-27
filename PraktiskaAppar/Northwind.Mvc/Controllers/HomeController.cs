@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using Northwind.EntityModels;
 using Northwind.Mvc.Models;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Northwind.Mvc.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -26,6 +28,7 @@ namespace Northwind.Mvc.Controllers
                 VisitorCount: Random.Shared.Next(1, 1001),
                 Categories: db.Categories.ToList(),
                 Products: db.Products.ToList()
+              
 
             );
 
@@ -46,6 +49,28 @@ namespace Northwind.Mvc.Controllers
 
             return View(model);
         }
+        
+        public IActionResult CategoryDetail(int? id)
+        {
+            if(!id.HasValue)
+            {
+                return BadRequest("You must pass a Category ID in the route, " +
+                                  "for example, /Home/CategoryDetail/3");
+            }
+            Category? model = db.Categories
+                .Include(c => c.Products)
+                .ThenInclude(p=>p.Supplier)
+                .SingleOrDefault(c => c.CategoryId == id);
+                
+            if(model is null)
+            {
+                return NotFound($"Category{id} not found");
+            }
+
+            return View(model);
+        }
+
+        
 
         public IActionResult ModelBindning()
         {
@@ -64,7 +89,7 @@ namespace Northwind.Mvc.Controllers
             return View(model); // show the model bound thing
         }
 
-        [Authorize(Roles ="Admin")]
+      //  [Authorize(Roles ="Admin")]
         public IActionResult Privacy()
         {
             return View();

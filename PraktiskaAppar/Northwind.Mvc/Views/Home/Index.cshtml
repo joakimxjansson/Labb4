@@ -4,6 +4,7 @@
     ViewData["Title"] = "Home Page";
     string currentItem = "";
 }
+<html lang="en" data-bs-theme="dark">
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
@@ -25,7 +26,7 @@
                 {
                     currentItem = "";
                 }
-                <li data-bs-target="#categories" data-slide-to="@c" class="@currentItem"></li>
+                <li data-bs-target="#categories" data-bs-slide-to="@c" class="@currentItem"></li>
             }
         </ol>
         <div class="carousel-inner">
@@ -47,7 +48,7 @@
                         <h3>@Model.Categories[c].Description</h3>
                         <p>
                             <a class="btn btn-primary" 
-                            href="/category/@Model.Categories[c].CategoryId">View category</a>
+                            href="/Home/CategoryDetail/@Model.Categories[c].CategoryId">View category</a>
                         </p>
                     </div>
                 </div>

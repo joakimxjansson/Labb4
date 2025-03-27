@@ -6,6 +6,5 @@ namespace Northwind.Mvc.Models
     (
         int VisitorCount,
         IList<Category> Categories,
-        IList<Product> Products
-    );
+        IList<Product> Products);
 }
